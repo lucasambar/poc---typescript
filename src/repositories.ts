@@ -39,3 +39,19 @@ export function insertNewEmployee(body: RequestBody): Promise<QueryResult> {
     [name, email, position_id, departament_id]
   );
 }
+export function putEmployee(
+  body: RequestBody,
+  id: number
+): Promise<QueryResult> {
+  const { name, email, position_id, departament_id } = body;
+  return connection.query(
+    `UPDATE employees 
+     SET 
+      name=$1, 
+      email=$2, 
+      position_id=$3,
+      departament_id=$4
+     WHERE id=$5`,
+     [ name, email, position_id, departament_id , id]
+  );
+}
