@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { RequestBody } from "./protocols.js";
 import {
   findDepartaments,
+  findEmployeeByEmail,
   findEmployees,
   findPositions,
 } from "./repositories.js";
@@ -22,7 +23,7 @@ export async function validateRequest(
   }
 
   try {
-    const { departament_id, position_id } = body;
+    const { email, departament_id, position_id } = body;
 
     const departamentDB = await findDepartaments(departament_id);
     if (departamentDB.rowCount === 0)
@@ -32,7 +33,11 @@ export async function validateRequest(
     if (positionDB.rowCount === 0)
       return res.status(404).send("Position not found in database.");
 
-    res.locals = { body };
+    const employeeDB = await findEmployeeByEmail(email);
+    if (employeeDB.rowCount !== 0)
+      return res.status(422).send("Email already used by another employee");
+
+    res.locals.body = body;
     next();
   } catch (error) {
     console.log(error);
