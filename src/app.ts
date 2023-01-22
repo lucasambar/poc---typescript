@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import { validateEmployeeId, validateRequest } from "./middleware.js";
-import { get, post, put } from "./controllers.js";
+import { deleteOne, get, post, put } from "./controllers.js";
 
 const app = express();
 app.use(express.json());
@@ -13,7 +13,7 @@ app.get("/health", (req, res) => res.send("tudo certo"));
 app.get("/employee", get);
 app.post("/employee", validateRequest, post);
 app.put("/employee/:id", validateEmployeeId, validateRequest, put);
-app.delete("/employee/:id", validateEmployeeId);
+app.delete("/employee/:id", validateEmployeeId, deleteOne);
 
 app.listen(5000, () => {
   console.log("Projeto rodando na porta 5000. :)");

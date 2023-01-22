@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { insertNewEmployee, putEmployee, selectAll } from "./repositories.js";
+import { deleteEmployee, insertNewEmployee, putEmployee, selectAll } from "./repositories.js";
 import { RequestBody } from "./protocols.js";
 
 export async function get(req: Request, res: Response) {
@@ -34,5 +34,17 @@ export async function put(req: Request, res: Response) {
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
+  }
+}
+
+export async function deleteOne (req: Request, res: Response) {
+  const id = res.locals.id
+
+  try {
+    await deleteEmployee(id)
+    res.sendStatus(204)
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
   }
 }

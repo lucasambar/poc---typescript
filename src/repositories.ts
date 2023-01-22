@@ -39,6 +39,7 @@ export function insertNewEmployee(body: RequestBody): Promise<QueryResult> {
     [name, email, position_id, departament_id]
   );
 }
+
 export function putEmployee(
   body: RequestBody,
   id: number
@@ -52,6 +53,10 @@ export function putEmployee(
       position_id=$3,
       departament_id=$4
      WHERE id=$5`,
-     [ name, email, position_id, departament_id , id]
+    [name, email, position_id, departament_id, id]
   );
+}
+
+export function deleteEmployee (id: number): Promise<QueryResult> {
+  return connection.query('DELETE FROM employees WHERE id = $1',[id])
 }

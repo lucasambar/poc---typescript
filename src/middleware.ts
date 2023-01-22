@@ -14,7 +14,6 @@ export async function validateRequest(
   next: NextFunction
 ) {
   const body = req.body as RequestBody;
-  const id = res.locals.id as number;
 
   const validation = employeeSchema.validate(body, { abortEarly: false });
   if (validation.error) {
@@ -35,14 +34,13 @@ export async function validateRequest(
       return res.status(404).send("Position not found in database.");
 
     const employeeDB = await findEmployeeByEmail(email);
-    console.log(employeeDB.rows[0].id);
-    if (employeeDB.rowCount !== 0 && !id)
-      return res.status(422).send("Email already used by another employee");
-    else if (employeeDB.rowCount !== 0 && employeeDB.rows[0].id === id)
+
+    if (employeeDB.rowCount !== 0)
       return res.status(422).send("Email already used by another employee");
 
+
     res.locals.body = body;
-    res.locals.id = id;
+
     next();
   } catch (error) {
     console.log(error);
