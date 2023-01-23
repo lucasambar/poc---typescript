@@ -13,3 +13,5 @@ export type GetResponse = {
     salary: number,
     departament: string
 }
+
+export type QueryParams = string | undefined

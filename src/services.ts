@@ -7,12 +7,12 @@ export function calculateBrCharges(salary: number) {
     const salario_liquido: number = salary - inss - ir;
 
     return {
-      gross_salary: `R$ ${salary / 100}`,
-      net_salary: `R$ ${salario_liquido / 100}`,
-      inss: `R$ ${inss / 100}`,
-      ir: `R$ ${ir / 100}`,
-      inss_business: `R$ ${inss_patronal / 100}`,
-      fgts: `R$ ${fgts / 100}`,
+      gross_salary: `R$ ${(salary / 100).toFixed(2)}`,
+      net_salary: `R$ ${(salario_liquido / 100).toFixed(2)}`,
+      inss: `R$ ${(inss / 100).toFixed(2)}`,
+      ir: `R$ ${(ir / 100).toFixed(2)}`,
+      inss_business: `R$ ${(inss_patronal / 100).toFixed(2)}`,
+      fgts: `R$ ${(fgts / 100).toFixed(2)}`,
     };
   } else if (salary > 385695 && salary < 750749) {
     const inss: number = salary * 0.14;
@@ -27,12 +27,12 @@ export function calculateBrCharges(salary: number) {
     const salario_liquido: number = salary - inss - ir;
 
     return {
-        gross_salary: `R$ ${salary / 100}`,
-        net_salary: `R$ ${salario_liquido / 100}`,
-        inss: `R$ ${inss / 100}`,
-        ir: `R$ ${ir / 100}`,
-        inss_business: `R$ ${inss_patronal / 100}`,
-        fgts: `R$ ${fgts / 100}`,
+        gross_salary: `R$ ${(salary / 100).toFixed(2)}`,
+        net_salary: `R$ ${(salario_liquido / 100).toFixed(2)}`,
+        inss: `R$ ${(inss / 100).toFixed(2)}`,
+        ir: `R$ ${(ir / 100).toFixed(2)}`,
+        inss_business: `R$ ${(inss_patronal / 100).toFixed(2)}`,
+        fgts: `R$ ${(fgts / 100).toFixed(2)}`,
       };
   } else {
     const inss: number = 750749 * 0.14;
@@ -42,12 +42,12 @@ export function calculateBrCharges(salary: number) {
     const salario_liquido: number = salary - inss - ir;
 
     return {
-      gross_salary: `R$ ${salary / 100}`,
-      net_salary: `R$ ${salario_liquido / 100}`,
-      inss: `R$ ${inss / 100}`,
-      ir: `R$ ${ir / 100}`,
-      inss_business: `R$ ${inss_patronal / 100}`,
-      fgts: `R$ ${fgts / 100}`,
+      gross_salary: `R$ ${(salary / 100).toFixed(2)}`,
+      net_salary: `R$ ${(salario_liquido / 100).toFixed(2)}`,
+      inss: `R$ ${(inss / 100).toFixed(2)}`,
+      ir: `R$ ${(ir / 100).toFixed(2)}`,
+      inss_business: `R$ ${(inss_patronal / 100).toFixed(2)}`,
+      fgts: `R$ ${(fgts / 100).toFixed(2)}`,
     };
   }
 }

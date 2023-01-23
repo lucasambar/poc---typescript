@@ -5,12 +5,15 @@ import {
   putEmployee,
   selectAll,
 } from "./repositories.js";
-import { RequestBody } from "./protocols.js";
+import { QueryParams, RequestBody } from "./protocols.js";
 import { calculateBrCharges } from "./services.js";
 
 export async function get(req: Request, res: Response) {
+  const department = req.query.department_id as QueryParams
+  const position = req.query.position_id as QueryParams
+
   try {
-    const { rows } = await selectAll();
+    const { rows } = await selectAll(department, position);
 
     const response = rows.map((employee) => {
       const playroll_br = calculateBrCharges(employee.salary);

@@ -1,6 +1,6 @@
 import { QueryResult } from "pg";
 import { connection } from "./database.js";
-import { GetResponse, RequestBody } from "./protocols.js";
+import { GetResponse, QueryParams, RequestBody } from "./protocols.js";
 
 export function findDepartaments(id: number): Promise<QueryResult> {
   return connection.query("SELECT * FROM departaments WHERE id=$1", [id]);
@@ -17,8 +17,8 @@ export function findEmployees(id: number): Promise<QueryResult> {
   return connection.query("SELECT * FROM employees WHERE id=$1", [id]);
 }
 
-export function selectAll(): Promise<QueryResult<GetResponse>> {
-  return connection.query(`
+export function selectAll(department: QueryParams, position: QueryParams): Promise<QueryResult<GetResponse>> {
+    const baseQuery = `
         SELECT
             e.id,
             e.name,
@@ -29,7 +29,11 @@ export function selectAll(): Promise<QueryResult<GetResponse>> {
         FROM employees e
         JOIN positions p ON e.position_id = p.id
         JOIN departaments d ON e.departament_id = d.id
-    `);
+    `;
+    if (position && department) return connection.query(baseQuery + "WHERE position_id=$1 AND departament_id=$2", [position,department])
+    if (department) return connection.query(baseQuery + "WHERE departament_id=$1", [department])
+    if (position) return connection.query(baseQuery + "WHERE position_id=$1", [position])
+    return connection.query(baseQuery)
 }
 
 export function insertNewEmployee(body: RequestBody): Promise<QueryResult> {
