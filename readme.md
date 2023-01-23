@@ -35,12 +35,19 @@ List all employess that work at this business.
 response:
 ```JSON
 {
-    "id",
-    "name",
-    "email",
-    "position",
-    "salary",
-    "departament"
+    "id": "identifictor number",
+    "name": "name registered",
+    "email": "contact email",
+    "position": "level in the business",
+    "departament": "departament that the employees works",
+    "playroll_br" : {
+      "gross_salary": "base salary in the position",
+      "net_salary": "salary after brazilian charges",
+      "inss": "value charged from employee to inss - based in 2023 rules",
+      "ir": "value charged from employee to 'imposto de renda' - based in 2023 rules",
+      "inss_business": "value charged from employer to inss and services - based in 2023 rules",
+      "fgts": "value charged from employer to fgts - based in 2023 rules",
+    }
 }
 ```
 **PUT: /employess/:id**
