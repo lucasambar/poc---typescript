@@ -54,6 +54,7 @@ response:
 
 
 Try using this query params: departments_id or position_id or both! So you can filter results.
+
 **PUT: /employess/:id**
 
 Update an employees information using their id.
