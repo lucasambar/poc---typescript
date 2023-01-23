@@ -40,7 +40,8 @@ response:
     "email": "contact email",
     "position": "level in the business",
     "departament": "departament that the employees works",
-    "playroll_br" : {
+    //following values of playrolll for each employee based in brazilian work laws
+    "playroll_br" : { 
       "gross_salary": "base salary in the position",
       "net_salary": "salary after brazilian charges",
       "inss": "value charged from employee to inss - based in 2023 rules",
